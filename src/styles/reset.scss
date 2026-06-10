@@ -1,0 +1,47 @@
+/* Изолируем сброс в отдельный каскадный слой */
+@layer reset {
+  /* 1. Правильная блочная модель для всех элементов */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  /* 2. Сброс внутренних и внешних отступов */
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 3. Улучшение поведения страницы */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased; /* Улучшает рендеринг шрифтов на macOS */
+    min-height: 100vh; /* Занимает минимум всю высоту экрана */
+  }
+
+  /* 4. Адаптивные медиа-элементы (чтобы картинки не ломали сетку) */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 5. Наследование шрифтов для элементов форм */
+  input, button, textarea, select {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* 6. Предотвращение выхода текста за пределы контейнера */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+
+  /* 7. Удаление стандартных маркеров списков */
+  ul, ol {
+    list-style: none;
+  }
+}
