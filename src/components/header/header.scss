@@ -45,6 +45,7 @@
   &__language {
     &__button {
       &:first-child::after {
+        color: #575757;
         content: '/';
         font-weight: normal;
         margin: 0 2px;

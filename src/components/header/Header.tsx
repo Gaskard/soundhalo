@@ -1,9 +1,15 @@
 import '../../styles/base.scss'
 import '../header/header.scss'
 
+import { useState } from 'react'
+
 import logo from './img/logo.svg'
 
 const Header = () => {
+
+  const [activeEng, setActiveEng] = useState(true)
+  const [activeUkr, setActiveUkr] = useState(false)
+
   return (
     <>
       <div className="background"></div>
@@ -31,8 +37,18 @@ const Header = () => {
               </ul>
             </nav>
             <div className="header__language">
-              <button className="header__language__button header__language__button-active">Eng</button>
-              <button className="header__language__button">Ukr</button>
+              <button
+                onClick={() => {
+                  setActiveEng(true)
+                  setActiveUkr(false)
+                }}
+                className={activeEng ? 'header__language__button header__language__button-active' : "header__language__button"}>Eng</button>
+              <button
+                onClick={() => {
+                  setActiveEng(false)
+                  setActiveUkr(true)
+                }}
+                className={activeUkr ? 'header__language__button header__language__button-active' : "header__language__button"}>Ukr</button>
             </div>
           </div>
           <div className="header__block">
