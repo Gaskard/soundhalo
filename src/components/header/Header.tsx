@@ -31,8 +31,8 @@ const Header = () => {
               </ul>
             </nav>
             <div className="header__language">
-              <button className="header__language-eng-active">Eng</button>
-              <button className="header__language-ukr">Ukr</button>
+              <button className="header__language__button header__language__button-active">Eng</button>
+              <button className="header__language__button">Ukr</button>
             </div>
           </div>
           <div className="header__block">
