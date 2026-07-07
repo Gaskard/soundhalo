@@ -16,7 +16,7 @@ const Header = () => {
       <div className="container">
         <header className="header">
           <div className="header__topbar">
-            <img src={logo} alt="" className="header__logo"/>
+            <img src={logo} alt='logo' className="header__logo"/>
             <nav className="header__navbar">
               <ul className="header__menu">
                 <li className="header__menu-item">
