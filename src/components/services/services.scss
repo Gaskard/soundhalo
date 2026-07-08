@@ -1,0 +1,22 @@
+.services {
+  margin-left: 118px;
+  &__head {
+    display: flex;
+    align-items: flex-end;
+    gap: 30px;
+    max-width: 924px;
+  }
+  &__title {
+    font-weight: 700;
+    font-size: 112px;
+    line-height: 90%;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  &__descr {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 130%;
+    color: #fff;
+  }
+}
