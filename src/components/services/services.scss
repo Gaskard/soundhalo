@@ -12,10 +12,10 @@
     font-size: 112px;
     line-height: 90%;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--color-txt-light-akcent);
   }
   &__descr {
-    color: #e6e6e6;
+    color: var(--color-txt-light);
     font-weight: 400;
     font-size: 17px;
     line-height: 130%;
@@ -33,14 +33,14 @@
       font-weight: 400;
       font-size: 17px;
       line-height: 130%;
-      color: #fff;
+      color: var(--color-txt-light-akcent);
   }
     &__sfx {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: 30px;
-      background: rgba(126, 126, 126, 0.25);
+      background: var(--color-bg-card);
       width: 566px;
       height: 562px;
       grid-column: 1 / 2;
@@ -51,7 +51,7 @@
       flex-direction: column;
       justify-content: space-between;
       padding: 30px;
-      background: rgba(126, 126, 126, 0.25);
+      background: var(--color-bg-card);
       width: 685px;
       height: 255px;
       grid-column: 2 / 4;
@@ -62,7 +62,7 @@
       flex-direction: column;
       justify-content: space-between;
       padding: 30px;
-      background: rgba(126, 126, 126, 0.25);
+      background: var(--color-bg-card);
       width: 328px;
       height: 277px;
       grid-column: 2 / 3;
@@ -73,20 +73,20 @@
       flex-direction: column;
       justify-content: space-between;
       padding: 30px;
-      background: rgba(126, 126, 126, 0.25);
+      background: var(--color-bg-card);
       width: 328px;
       height: 277px;
       grid-column: 3 / 4;
       grid-row: 2 / 3;
     }
     &__title {
-      color: #fff;
+      color: var(--color-txt-light-akcent);
       font-weight: 700;
       font-size: 17px;
       text-transform: uppercase;
     }
     &__descr {
-      color: #e6e6e6;
+      color: var(--color-txt-light);
       font-weight: 400;
       font-size: 17px;
       line-height: 130%;

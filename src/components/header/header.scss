@@ -27,25 +27,25 @@
       &:hover {
         text-decoration: underline;
         text-underline-offset: 2px;
-        color: #ff8253;
+        color: var(--color-hover);
     }
       text-decoration: none;
       font-weight: 400;
       font-size: 15px;
       line-height: 130%;
       text-align: right;
-      color: #e6e6e6;
+      color: var(--color-txt-light);
     }
   }
   &__navbar {
     padding: 15px 50px;
-    background: #575757;
+    background: var(--color-secondary);
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   }
   &__language {
     &__button {
       &:first-child::after {
-        color: #575757;
+        color: var(--color-secondary);
         content: '/';
         font-weight: normal;
         margin: 0 2px;
@@ -58,10 +58,10 @@
       text-align: right;
       border: 0;
       background: none;
-      color: #575757;
+      color: var(--color-secondary);
       cursor: pointer;
       &-active {
-        color: #e6e6e6;
+        color: var(--color-txt-light);
       }
     }
   }
@@ -70,12 +70,12 @@
     font-size: 136px;
     line-height: 90%;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--color-txt-light-akcent);
     margin: 0 auto;
     &-accent {
       display: inline-block;
       text-indent: 150px;
-      color: #f74806;
+      color: var(--color-akcent);
     }
     &-bottom {
       display: inline-flex;
@@ -86,7 +86,7 @@
       font-weight: 400;
       font-size: 17px;
       line-height: 130%;
-      color: #e6e6e6;
+      color: var(--color-txt-light);
       text-transform: none;
       margin-bottom: 8px;
     }
@@ -96,12 +96,12 @@
     margin-top: 30px;
     padding: 16px 40px 20px;
     height: 57px;
-    background-color: #f74806;
+    background-color: var(--color-akcent);
     font-weight: 700;
     font-size: 17px;
     text-transform: uppercase;
     text-align: center;
-    color: #fff;
+    color: var(--color-txt-light-akcent);
     cursor: pointer;
   }
   &__block {
