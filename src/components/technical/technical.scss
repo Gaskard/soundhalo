@@ -1,0 +1,85 @@
+.technical {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 100px;
+  position: relative;
+  &__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 30px;
+  }
+  &__title {
+    text-indent: 110px;
+    font-weight: 700;
+    font-size: 112px;
+    line-height: 90%;
+    text-transform: uppercase;
+    color: var(--color-txt-light-akcent);
+   }
+  &__descr {
+    margin-top: 30px;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 130%;
+    color: var(--color-txt-light);
+  }
+  &__discuss {
+    margin-top: 30px;
+    font-weight: 700;
+    font-size: 17px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--color-white);
+
+    padding: 16px 40px 20px;
+    width: 447px;
+    height: 57px;
+    background: var(--color-akcent);
+  }
+  &__footer {
+    font-weight: 700;
+    font-size: 17px;
+    text-transform: uppercase;
+    color: var(--color-txt-akcent);
+  }
+  &__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--color-bg-card);
+    padding: 30px;
+    width: 566px;
+    height: 266px;
+    &__header {
+      font-weight: 400;
+      font-size: 64px;
+      color: var(--color-txt-akcent);
+    }
+    &__title {
+      font-weight: 700;
+      font-size: 17px;
+      text-transform: uppercase;
+      color: var(--color-txt-light-akcent);
+    }
+    &__descr {
+      margin-top: 12px;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 130%;
+      color: var(--color-txt-light);
+    }
+  }
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  &__vector {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 100%;
+    height: auto;
+  }
+}
