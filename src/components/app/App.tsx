@@ -5,7 +5,8 @@ import Header from '../header/Header.tsx';
 import Services from '../services/Services.tsx';
 import ProblemSection from '../problemSection/ProblemSection.tsx';
 
-import Technical from '../technical/technical.tsx';
+import Technical from '../technical/Technical.tsx';
+import Portfolio from '../portfolio/Portfolio.tsx';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Services/>
       <ProblemSection/>
       <Technical/>
+      <Portfolio/>
     </>
   )
 }
