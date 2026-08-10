@@ -12,7 +12,7 @@ const Technical = () => {
             <p className="technical__descr">Precision audio engineering for immersive games and cinema. High-performance audio meets technical excellence. Zero recycled assets</p>
             <button className="technical__discuss">Discuss your project</button>
           </div>
-          <p className="technical__footer">[ NEXT-GEN ENGINE READY ]</p>
+          <p className="technical__footer">[ NEXT-GEN <br/> ENGINE READY ]</p>
         </div>
         <div className="technical__right">
           <div className="technical__card">
