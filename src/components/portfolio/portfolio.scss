@@ -45,7 +45,24 @@
       text-transform: uppercase;
       color: var(--color-txt-light);
     }
-
+    &-interface {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
+    }
+    &:hover .portfolio__video-interface {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      z-index: 100;
+    }
   }
   &__header {
     display: flex;
@@ -101,6 +118,10 @@
   &__progress {
     &-track {
       width: 880px;
+      height: 4px;
+      background: var(--color-secondary);
+    }
+    &-filled {
       height: 4px;
       background: var(--color-akcent);
     }
