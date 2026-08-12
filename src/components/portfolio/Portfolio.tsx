@@ -1,3 +1,5 @@
+import type {IVideoItem} from './Portfolio.types'
+
 import './portfolio.scss'
 
 import { useRef, useState } from 'react'
@@ -21,19 +23,46 @@ import arcaneTrailer from './video/arcaneTrailer.webm'
 
 const Portfolio = () => {
 
+    const portfolioVideoData = [
+    {
+      id: '1',
+      src: godOfWarTrailer,
+      category: 'Composition & Audio Implementation',
+      name: 'RPG Soundtrack',
+      thumbnail: kratos,
+      alt: 'kratos'
+    },
+    {
+      id: '2',
+      src: arcaneTrailer,
+      category: 'Composition & Audio Implementation',
+      name: 'RPG Soundtrack',
+      thumbnail: league,
+      alt: 'league'
+    },
+    {
+      id: '3',
+      src: witcherTrailer,
+      category: 'Composition & Audio Implementation',
+      name: 'RPG Soundtrack',
+      thumbnail: witcher,
+      alt: 'league'
+    },
+    {
+      id: '4',
+      src: jockerTrailer,
+      category: 'Composition & Audio Implementation',
+      name: 'RPG Soundtrack',
+      thumbnail: jocker,
+      alt: 'jocker'
+    },
+  ]
+
   const videoRef = useRef<HTMLVideoElement>(null)
   const [progress, setProgress] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
+  const [currentVideo, setCurrentVideo] = useState(portfolioVideoData[0])
 
-  const portfolioVideoData = [
-    {
-      id: 4,
-      src: jockerTrailer,
-      category: 'Composition & Audio Implementation',
-      name: 'RPG Soundtrack'
-    }
-
-  ]
 
   const handleTimeUpdate = () => {
     if (videoRef.current && videoRef.current.duration) {
@@ -54,6 +83,10 @@ const Portfolio = () => {
     }
   }
 
+  const handleChangeVideo = (item: IVideoItem) => {
+    setCurrentVideo(item)
+  }
+
   return (
     <section className="portfolio">
       <div className="portfolio__player">
@@ -64,7 +97,7 @@ const Portfolio = () => {
         <div className="portfolio__video">
           <video
             ref={videoRef}
-            src={jockerTrailer}
+            src={currentVideo.src}
             className="portfolio__video-element"
             autoPlay={true}
             loop={true}
@@ -74,8 +107,8 @@ const Portfolio = () => {
           </video>
           <div className="portfolio__video-interface">
             <div className="portfolio__video-info">
-              <span className="portfolio__video-category">Composition & Audio Implementation</span>
-              <h3 className="portfolio__video-name">RPG Soundtrack</h3>
+              <span className="portfolio__video-category">{currentVideo.category}</span>
+              <h3 className="portfolio__video-name">{currentVideo.name}</h3>
             </div>
           <div className="portfolio__controls">
             <button onClick={handlePlay} className="portfolio__control-btn">
@@ -101,18 +134,11 @@ const Portfolio = () => {
             <img src={arrowUpIcon} alt="up"/>
           </button>
           <div className="portfolio__thumbs-list">
-            <div className="portfolio__thumbs-item portfolio__thumbs-item--active">
-              <img src={kratos} alt='kratos'/>
-            </div>
-            <div className="portfolio__thumbs-item portfolio__thumbs-item">
-              <img src={league} alt='league'/>
-            </div>
-            <div className="portfolio__thumbs-item portfolio__thumbs-item">
-              <img src={witcher} alt='witcher'/>
-            </div>
-            <div className="portfolio__thumbs-item portfolio__thumbs-item">
-              <img src={jocker} alt='jocker'/>
-            </div>
+            {portfolioVideoData.map(item => (
+              <div onClick={() => handleChangeVideo(item)} key={item.id} className={item.id === currentVideo.id ? "portfolio__thumbs-item portfolio__thumbs-item--active" : "portfolio__thumbs-item"}>
+                <img id={item.id} src={item.thumbnail} alt={item.alt}/>
+              </div>
+            ))}
           </div>
           <button className="portfolio__arrow portfolio__arrow--down">
             <img src={arrowDownIcon} alt="down"/>
