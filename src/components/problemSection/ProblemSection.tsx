@@ -1,7 +1,7 @@
 import '../../styles/base.scss'
 import './problemSection.scss'
 
-import trailer from '../problemSection/video/trailer-web.mp4'
+import trailer from './video/jockerTrailer.webm'
 
 const ProblemSection = () => {
   return (

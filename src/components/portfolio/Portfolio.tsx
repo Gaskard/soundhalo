@@ -2,7 +2,7 @@ import type {IVideoItem} from './Portfolio.types'
 
 import './portfolio.scss'
 
-import { useRef, useState } from 'react'
+import {useEffect, useRef, useState} from 'react'
 
 import playIcon from '../portfolio/icons/play.svg'
 import pauseIcon from '../portfolio/icons/pause.svg'
@@ -16,17 +16,12 @@ import league from '../portfolio/img/league.jpg'
 import witcher from '../portfolio/img/witcher.jpg'
 import jocker from '../portfolio/img/jocker.jpg'
 
-import jockerTrailer from './video/jockerTrailer.webm'
-import witcherTrailer from './video/witcherTrailer.webm'
-import godOfWarTrailer from './video/godOfWarTrailer.webm'
-import arcaneTrailer from './video/arcaneTrailer.webm'
-
 const Portfolio = () => {
 
     const portfolioVideoData = [
     {
       id: '1',
-      src: godOfWarTrailer,
+      getSrc: ()=> import('./video/godOfWarTrailer.webm'),
       category: 'Composition & Audio Implementation',
       name: 'RPG Soundtrack',
       thumbnail: kratos,
@@ -34,7 +29,7 @@ const Portfolio = () => {
     },
     {
       id: '2',
-      src: arcaneTrailer,
+      getSrc: ()=> import('./video/arcaneTrailer.webm'),
       category: 'Composition & Audio Implementation',
       name: 'RPG Soundtrack',
       thumbnail: league,
@@ -42,15 +37,15 @@ const Portfolio = () => {
     },
     {
       id: '3',
-      src: witcherTrailer,
+      getSrc: ()=> import('./video/witcherTrailer.webm'),
       category: 'Composition & Audio Implementation',
       name: 'RPG Soundtrack',
       thumbnail: witcher,
-      alt: 'league'
+      alt: 'witcher'
     },
     {
       id: '4',
-      src: jockerTrailer,
+      getSrc: ()=> import('./video/jockerTrailer.webm'),
       category: 'Composition & Audio Implementation',
       name: 'RPG Soundtrack',
       thumbnail: jocker,
@@ -61,7 +56,23 @@ const Portfolio = () => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [progress, setProgress] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
-  const [currentVideo, setCurrentVideo] = useState(portfolioVideoData[0])
+  const [currentVideo, setCurrentVideo] = useState<IVideoItem>(portfolioVideoData[0])
+  const [videoUrl, setVideoUrl] = useState<string | null>(null)
+
+  useEffect(()=> {
+    portfolioVideoData[0].getSrc().then(module => setVideoUrl(module.default))
+  }, [])
+
+  useEffect(() => {
+    if(videoRef.current && videoUrl) {
+      videoRef.current.load()
+      videoRef.current.play().then(() => {
+        setIsPlaying(true)
+      }).catch(() => {
+        setIsPlaying(false)
+      })
+    }
+  }, [videoUrl])
 
 
   const handleTimeUpdate = () => {
@@ -83,8 +94,11 @@ const Portfolio = () => {
     }
   }
 
-  const handleChangeVideo = (item: IVideoItem) => {
+  const handleChangeVideo = async (item: IVideoItem) => {
+    if (item.id === currentVideo.id) return
     setCurrentVideo(item)
+    const videoModule = await item.getSrc()
+    setVideoUrl(videoModule.default)
   }
 
   return (
@@ -97,12 +111,13 @@ const Portfolio = () => {
         <div className="portfolio__video">
           <video
             ref={videoRef}
-            src={currentVideo.src}
+            src={videoUrl || undefined}
             className="portfolio__video-element"
             autoPlay={true}
             loop={true}
             muted={true}
             onTimeUpdate={handleTimeUpdate}
+            poster={currentVideo.thumbnail}
           >
           </video>
           <div className="portfolio__video-interface">

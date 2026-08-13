@@ -1,6 +1,6 @@
 export interface IVideoItem {
   id: string,
-  src: string,
+  getSrc: () => Promise<{ default: string }>,
   category: string,
   name: string,
   thumbnail: string,
