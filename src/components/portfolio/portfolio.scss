@@ -105,6 +105,12 @@
       flex-direction: column;
       gap: 20px;
     }
+    &-item {
+      cursor: pointer;
+      &--active {
+        border: 2px solid var(--color-akcent);
+      }
+    }
   }
   &__control {
     &-btn {

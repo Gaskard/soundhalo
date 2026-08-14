@@ -20,7 +20,7 @@ const Portfolio = () => {
 
     const portfolioVideoData = [
     {
-      id: '1',
+      id: '0',
       getSrc: ()=> import('./video/godOfWarTrailer.webm'),
       category: 'Composition & Audio Implementation',
       name: 'RPG Soundtrack',
@@ -28,7 +28,7 @@ const Portfolio = () => {
       alt: 'kratos'
     },
     {
-      id: '2',
+      id: '1',
       getSrc: ()=> import('./video/arcaneTrailer.webm'),
       category: 'Composition & Audio Implementation',
       name: 'RPG Soundtrack',
@@ -36,7 +36,7 @@ const Portfolio = () => {
       alt: 'league'
     },
     {
-      id: '3',
+      id: '2',
       getSrc: ()=> import('./video/witcherTrailer.webm'),
       category: 'Composition & Audio Implementation',
       name: 'RPG Soundtrack',
@@ -44,7 +44,7 @@ const Portfolio = () => {
       alt: 'witcher'
     },
     {
-      id: '4',
+      id: '3',
       getSrc: ()=> import('./video/jockerTrailer.webm'),
       category: 'Composition & Audio Implementation',
       name: 'RPG Soundtrack',
@@ -101,6 +101,19 @@ const Portfolio = () => {
     setVideoUrl(videoModule.default)
   }
 
+  const handleArrowChange = async (delta: number) => {
+    let finalIndex = +currentVideo.id + delta
+    if (finalIndex < 0) {
+      finalIndex = portfolioVideoData.length - 1
+    } else if (finalIndex > portfolioVideoData.length - 1) {
+      finalIndex = 0
+    }
+    const nextVideo = portfolioVideoData[finalIndex]
+    const videoModule = await nextVideo.getSrc()
+    setCurrentVideo(nextVideo)
+    setVideoUrl(videoModule.default)
+  }
+
   return (
     <section className="portfolio">
       <div className="portfolio__player">
@@ -145,7 +158,7 @@ const Portfolio = () => {
         </div>
 
         <div className="portfolio__slider">
-          <button className="portfolio__arrow portfolio__arrow--up">
+          <button onClick={() => handleArrowChange(-1)} className="portfolio__arrow portfolio__arrow--up">
             <img src={arrowUpIcon} alt="up"/>
           </button>
           <div className="portfolio__thumbs-list">
@@ -155,7 +168,7 @@ const Portfolio = () => {
               </div>
             ))}
           </div>
-          <button className="portfolio__arrow portfolio__arrow--down">
+          <button onClick={() => handleArrowChange(1)} className="portfolio__arrow portfolio__arrow--down">
             <img src={arrowDownIcon} alt="down"/>
           </button>
         </div>
