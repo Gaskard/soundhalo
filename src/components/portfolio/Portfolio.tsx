@@ -2,7 +2,7 @@ import type {IVideoItem} from './Portfolio.types'
 
 import './portfolio.scss'
 
-import {useEffect, useRef, useState} from 'react'
+import {useEffect, useRef, useState, type MouseEvent } from 'react'
 
 import playIcon from '../portfolio/icons/play.svg'
 import pauseIcon from '../portfolio/icons/pause.svg'
@@ -54,10 +54,13 @@ const Portfolio = () => {
   ]
 
   const videoRef = useRef<HTMLVideoElement>(null)
+  const progressTrackRef = useRef<HTMLDivElement>(null)
+
   const [progress, setProgress] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
   const [currentVideo, setCurrentVideo] = useState<IVideoItem>(portfolioVideoData[0])
   const [videoUrl, setVideoUrl] = useState<string | null>(null)
+  const [isMuted, setIsMuted] = useState(true)
 
   useEffect(()=> {
     portfolioVideoData[0].getSrc().then(module => setVideoUrl(module.default))
@@ -102,16 +105,43 @@ const Portfolio = () => {
   }
 
   const handleArrowChange = async (delta: number) => {
-    let finalIndex = +currentVideo.id + delta
+    const currentIndex = portfolioVideoData.findIndex(item => item.id === currentVideo.id)
+    let finalIndex = currentIndex + delta
     if (finalIndex < 0) {
       finalIndex = portfolioVideoData.length - 1
     } else if (finalIndex > portfolioVideoData.length - 1) {
       finalIndex = 0
     }
     const nextVideo = portfolioVideoData[finalIndex]
-    const videoModule = await nextVideo.getSrc()
-    setCurrentVideo(nextVideo)
-    setVideoUrl(videoModule.default)
+    await handleChangeVideo(nextVideo)
+  }
+
+  const toggleFullScreen = async () => {
+      if (!document.fullscreenElement) {
+        videoRef.current?.requestFullscreen()
+      } else {
+        await document.exitFullscreen()
+      }
+  }
+
+  const handleToggleMute = ()=> {
+      if (videoRef.current) {
+        const nextMutedState = !isMuted
+        videoRef.current.muted = nextMutedState
+        setIsMuted(nextMutedState)
+      }
+  }
+
+  const handleProgressClick = (e: MouseEvent) => {
+      const track = progressTrackRef.current
+      const video = videoRef.current
+    if (track && video && video.duration) {
+      const rect = track.getBoundingClientRect()
+      const clickX = e.clientX - rect.left
+      const percentage = clickX / rect.width
+      video.currentTime = percentage * video.duration
+      setProgress(percentage * 100)
+    }
   }
 
   return (
@@ -123,12 +153,13 @@ const Portfolio = () => {
         </div>
         <div className="portfolio__video">
           <video
+            onClick={handlePlay}
             ref={videoRef}
             src={videoUrl || undefined}
             className="portfolio__video-element"
             autoPlay={true}
             loop={true}
-            muted={true}
+            muted={isMuted}
             onTimeUpdate={handleTimeUpdate}
             poster={currentVideo.thumbnail}
           >
@@ -142,14 +173,14 @@ const Portfolio = () => {
             <button onClick={handlePlay} className="portfolio__control-btn">
               <img src={isPlaying ? pauseIcon : playIcon} alt="play/pause"/>
             </button>
-          <div className="portfolio__progress-track">
+          <div onClick={handleProgressClick} ref={progressTrackRef} className="portfolio__progress-track">
             <div style={{width: `${progress}%`}} className="portfolio__progress-filled"></div>
           </div>
           <div className="portfolio__controls-right">
-            <button className="portfolio__control-btn">
+            <button onClick={handleToggleMute} className={`portfolio__control-btn ${isMuted ? 'portfolio__control-btn--muted' : ''}`}>
               <img src={soundIcon} alt="sound"/>
             </button>
-            <button className="portfolio__control-btn">
+            <button onClick={toggleFullScreen} className="portfolio__control-btn">
               <img src={fullScreenIcon} alt="fullscreen"/>
             </button>
           </div>
