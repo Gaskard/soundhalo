@@ -1,0 +1,44 @@
+.voices {
+  margin-top: 100px;
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  &__title {
+    font-weight: 700;
+    font-size: 112px;
+    line-height: 80%;
+    text-indent: 110px;
+    text-transform: uppercase;
+    color: var(--color-txt-akcent);
+  }
+  &__arrow {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  &__slider {
+    display: flex;
+    gap: 10px;
+  }
+  &__review {
+    &__title {
+      font-weight: 400;
+      font-size: 64px;
+      color: var(--color-txt-light-akcent);
+    }
+    &__text {
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 130%;
+      color: var(--color-txt-light);
+    }
+    &__author {
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 130%;
+      color: var(--color-txt-secondary);
+    }
+  }
+}
