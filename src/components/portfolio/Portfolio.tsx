@@ -147,9 +147,11 @@ const Portfolio = () => {
   return (
     <section className="portfolio">
       <div className="portfolio__player">
-        <div className="portfolio__header">
-          <h2 className="portfolio__title">PORTFOLIO</h2>
-          <p className="portfolio__selected">[ Selected works ]</p>
+        <div className="container">
+          <div className="portfolio__header">
+            <h2 className="portfolio__title">PORTFOLIO</h2>
+            <p className="portfolio__selected">[ Selected works ]</p>
+          </div>
         </div>
         <div className="portfolio__video">
           <video

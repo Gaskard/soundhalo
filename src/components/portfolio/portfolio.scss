@@ -1,5 +1,5 @@
 .portfolio {
-  margin-top: 45px;
+  margin-top: 100px;
   &__player {
     position: relative;
   }
@@ -17,7 +17,7 @@
     }
   }
   &__video {
-    position: absolute;
+    margin-top: 30px;
     top: 165px;
     left: 0;
     width: calc(100% - 483px);
@@ -67,8 +67,6 @@
   }
   &__header {
     display: flex;
-    width: calc(100% - 220px);
-    justify-content: center;
     gap: 30px;
     align-items: flex-end;
   }
@@ -78,6 +76,7 @@
     line-height: 80%;
     text-transform: uppercase;
     color: var(--color-txt-light-akcent);
+    text-indent: 110px;
   }
   &__selected {
     font-weight: 700;
@@ -92,7 +91,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 165px;
+    top: 120px;
     right: 260px;
   }
   &__arrow {

@@ -9,7 +9,7 @@ const Technical = () => {
         <div className="technical__left">
           <div className="technical__header">
             <h2 className="technical__title">TECHNICAL STANDARDS</h2>
-            <p className="technical__descr">Precision audio engineering for immersive games and cinema. High-performance audio meets technical excellence. Zero recycled assets</p>
+            <p className="technical__descr">Precision audio engineering for immersive games and cinema. High-performance audio meets <br/> technical excellence. Zero recycled assets</p>
             <button className="technical__discuss">Discuss your project</button>
           </div>
           <p className="technical__footer">[ NEXT-GEN <br/> ENGINE READY ]</p>
