@@ -23,16 +23,34 @@
     gap: 10px;
   }
   &__review {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+    margin-top: 71px;
+    &__item {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding-right: 60px;
+      &:not(:last-child) {
+        border-right: 1px solid var(--color-secondary);
+        height: 100%;
+      }
+    }
     &__title {
       font-weight: 400;
       font-size: 64px;
       color: var(--color-txt-light-akcent);
+      max-width: 18ch;
+      text-wrap: balance;
     }
     &__text {
       font-weight: 400;
       font-size: 36px;
       line-height: 130%;
       color: var(--color-txt-light);
+      max-width: 50ch;
+      text-wrap: pretty;
     }
     &__author {
       font-weight: 400;
