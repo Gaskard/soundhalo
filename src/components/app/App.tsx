@@ -7,6 +7,7 @@ import ProblemSection from '../problemSection/ProblemSection.tsx';
 
 import Technical from '../technical/Technical.tsx';
 import Portfolio from '../portfolio/Portfolio.tsx';
+import Voices from '../voices/Voices.tsx';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <ProblemSection/>
       <Technical/>
       <Portfolio/>
+      <Voices/>
     </>
   )
 }
