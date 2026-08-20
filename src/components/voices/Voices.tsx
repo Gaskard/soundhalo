@@ -2,7 +2,7 @@ import './voices.scss'
 
 import type { IReviewsItem } from './Voices.types'
 
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
 import arrowLeft from './icons/arrowleft.svg'
 import arrowRight from './icons/arrowright.svg'
@@ -26,22 +26,36 @@ const reviewData: IReviewsItem[] = [
     text: 'Every sound effect felt alive and hit exactly where it needed to. They transformed our raw gameplay into a deeply immersive, cinematic experience.',
     author: '— Lead Audio Designer, Pulse Games'
   },
+  {
+  id: 3,
+  title: 'Next-Level Sound Design',
+  text: 'They don’t just write music, they build complete sonic worlds. Their attention to detail in every layer turned our game into an unforgettable journey.',
+  author: '— Executive Producer, Hyperion Interactive'
+},
+{
+  id: 4,
+  title: 'Unmatched Musical Vision',
+  text: 'Working with them was completely seamless. They captured the exact atmosphere we needed on the very first try and elevated the entire mood.',
+  author: '— Game Director, Voxel Horizon'
+},
 ]
 
 
 const Voices = () => {
-  const prevRef = useRef<HTMLButtonElement>(null)
-  const nextRef = useRef<HTMLButtonElement>(null)
 
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [currentReviews, setCurrentReviews] = useState<IReviewsItem[]>([])
+  const [startIndex, setStartIndex] = useState(0)
 
-
-  const handleArrowClick = () => {
-    if (nextRef.current) {
-      setCurrentIndex(next => next + 1)
+  const handleNext = () => {
+    if (startIndex < reviewData.length - 2) {
+      setStartIndex(prev => prev + 2)
     }
-  } // do slider arrow click
+  }
+
+  const handlePrev = () => {
+    if (startIndex > 0) {
+      setStartIndex(prev => prev - 2)
+    }
+  }
 
   return (
     <div className="container">
@@ -49,10 +63,10 @@ const Voices = () => {
         <div className="voices__head">
           <h2 className="voices__title">Voices</h2>
           <div className="voices__slider">
-            <button onClick={handleArrowClick} ref={prevRef} className="voices__arrow">
+            <button onClick={handlePrev} className="voices__arrow">
               <img src={arrowLeft} alt="arrow left"/>
             </button>
-            <button onClick={handleArrowClick} ref={nextRef} className="voices__arrow">
+            <button onClick={handleNext} className="voices__arrow">
               <img src={arrowRight} alt="arrow right"/>
             </button>
           </div>
@@ -64,7 +78,7 @@ const Voices = () => {
                 <p className="voices__review__text">{item.text}</p>
                 <p className="voices__review__author">{item.author}</p>
               </div>
-            )).slice(0, 2)}
+            )).slice(startIndex, startIndex + 2)}
         </div>
       </section>
     </div>
